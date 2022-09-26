@@ -1,0 +1,224 @@
+---
+import logo from "/apple.svg";
+import shop from "/cart.svg";
+import search from "/search.svg";
+---
+
+<header class="header">
+  <div class="container">
+    <div class="menu-btn">
+      <div class="menu-btn__burger"></div>
+    </div>
+    <img class="icons" src={logo} alt="" width="25px" />
+    <img class="icons shop" src={shop} alt="" />
+  </div>
+</header>
+
+<nav class="nav nav-mobil">
+  <div class="search_hidden nav">
+    <form action="" class="search">
+      <button class="search_hidden search__btn">
+        <img class="icons search__img" src={search} alt="" />
+      </button>
+      <input
+        class="search_hidden search__input"
+        type="text"
+        id="search"
+        placeholder="Search apple.com"
+      />
+      <p>Cancel</p>
+    </form>
+    <ul>
+      <li class="search_hidden menu-item">QUICK LINKS</li>
+      <li class="search_hidden menu-item">Visiting an Aplple Store FAQ</li>
+      <li class="search_hidden menu-item">AirPods</li>
+      <li class="search_hidden menu-item">AirTag</li>
+      <li class="search_hidden menu-item">AppleCare+</li>
+      <li class="search_hidden menu-item">Gift Cards</li>
+    </ul>
+  </div>
+  <ul class="mobile_menu">
+    <li class="menu-item">Store</li>
+    <li class="menu-item">Mac</li>
+    <li class="menu-item">iPad</li>
+    <li class="menu-item">iPhone</li>
+    <li class="menu-item">Watch</li>
+    <li class="menu-item">AirPods</li>
+    <li class="menu-item">TV & Home</li>
+    <li class="menu-item">Only on Apple</li>
+    <li class="menu-item">Accessories</li>
+    <li class="menu-item">Support</li>
+  </ul>
+</nav>
+
+<style>
+  .header {
+    position: relative;
+    background-color: var(--color-secondary);
+    width: 100%;
+    height: 50px;
+    transition: all 0.2s;
+    z-index: 10;
+  }
+  .header.dark {
+    background-color: var(--color-text);
+  }
+  .icons.shop.hidshop {
+    visibility: hidden;
+  }
+  .icons.shop {
+    transition: all 0.1s;
+  }
+  .container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem 0 2rem;
+  }
+  .nav-mobil {
+    position: relative;
+    width: 100%;
+    min-height: 95vh;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    background-color: rgb(0, 0, 0);
+    transform: translateY(-150%);
+    transition: all 0.6s ease-in-out;
+  }
+
+  .nav-mobil.sliddown {
+    overflow-y: hidden;
+    transform: translateY(0);
+  }
+
+  .nav {
+    position: relative;
+    color: var(--color-primary);
+    font-weight: 100;
+    font-size: 1.5rem;
+  }
+  .menu-btn {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 100%;
+    cursor: pointer;
+    transition: all 200ms ease-in-out;
+  }
+  .menu-btn__burger {
+    transition: all 200ms ease-in-out;
+    background: transparent;
+    width: 18px;
+    height: 1px;
+  }
+  .menu-btn__burger::before,
+  .menu-btn__burger::after {
+    content: "";
+    position: absolute;
+    width: 18px;
+    height: 1px;
+    background: #fff;
+    transition: all 200ms ease-in-out;
+  }
+  .menu-btn__burger::before {
+    transform: translateY(-5px);
+  }
+  .menu-btn__burger::after {
+    transform: translateY(5px);
+  }
+  /* ANIMATION */
+  .menu-btn.open .menu-btn__burger {
+    transform: translateX(-50px);
+    background: transparent;
+    box-shadow: none;
+  }
+  .menu-btn.open .menu-btn__burger::before {
+    transform: rotate(45deg) translate(35px, -35px);
+  }
+  .menu-btn.open .menu-btn__burger::after {
+    transform: rotate(-45deg) translate(35px, 35px);
+  }
+  .icons {
+    width: 20px;
+  }
+  ul {
+    margin: 0 5rem;
+    list-style: none;
+  }
+  ul li:not(:last-child) {
+    border-bottom: rgba(157, 156, 156, 0.659) solid 1px;
+    padding: 1.5rem 0 1.5rem 0;
+  }
+  ul li:last-child {
+    padding: 1.5rem 0 1.5rem 0;
+  }
+  .search {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* flex: 0 0 40%; */
+    width: 100%;
+    border-bottom: rgba(157, 156, 156, 0.659) solid 1px;
+    padding-bottom: 2rem;
+  }
+  .search__input {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: 100;
+    color: inherit;
+    background-color: #1d1d1f;
+    border: none;
+    padding: 0.7rem 5rem;
+    border-radius: 10px;
+    width: 80%;
+    margin-left: 1.5rem;
+    margin-right: 1rem;
+    height: 40px;
+    transition: all 0.2s;
+  }
+  .search__input::placeholder {
+    font-weight: 100;
+    font-size: 2rem;
+  }
+  .search__btn {
+    position: relative;
+    z-index: 1;
+    background-color: transparent;
+    border: none;
+    margin-right: -4.5rem;
+  }
+
+  .search p {
+    color: var(--color-textlinks);
+    font-size: 2rem;
+    font-weight: 300;
+  }
+
+  /* hidden saerch */
+  .search_hidden li:first-of-type {
+    color: #9d9c9cde;
+  }
+
+  /* mobile_menu */
+</style>
+
+<script>
+  const menuBtn = document.querySelector(".menu-btn");
+  const header = document.querySelector(".header");
+  const shop = document.querySelector(".shop");
+  const mobileNav = document.querySelector(".nav-mobil");
+  menuBtn.addEventListener("click", () => {
+    menuBtn.classList.toggle("open");
+    header.classList.toggle("dark");
+    shop.classList.toggle("hidshop");
+    mobileNav.classList.toggle("sliddown");
+  });
+</script>
