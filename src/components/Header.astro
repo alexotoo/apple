@@ -1,118 +1,78 @@
 ---
 import logo from "/apple.svg";
 import shop from "/cart.svg";
-import search from "/search.svg";
 ---
 
-<header class="header">
-  <div class="container">
-    <div class="menu-btn">
-      <div class="menu-btn__burger"></div>
+<header class="header container">
+  <div class="header__navbar">
+    <div class="menu__toggler">
+      <div class="menu__hamburger"></div>
     </div>
-    <img class="icons" src={logo} alt="" width="25px" />
-    <img class="icons shop" src={shop} alt="" />
+    <img class="menu__icons apple" src={logo} alt="" />
+    <img class="menu__icons shop" src={shop} alt="" />
   </div>
-</header>
 
-<nav class="nav nav-mobil">
-  <div class="search_hidden search_container">
-    <form action="" class="search">
-      <button class="search_hidden search__btn">
-        <img class="icons search__img" src={search} alt="" />
-      </button>
+  <nav class="nav nav__dropdown">
+    <form action="" class="search_container">
+      <!-- <button class="search_hidden search__btn">
+        <img class="menu__icons search__img" src={search} alt="" />
+      </button> -->
       <input
         class="search_hidden search__input"
-        type="text"
+        type="search"
         id="search"
         placeholder="Search apple.com"
       />
-      <p>Cancel</p>
+      <a href="#" class="search_cancel">Cancel</a>
     </form>
-  </div>
 
-  <ul class="search_nav search_hidden">
-    <li class="search_hidden menu-item">QUICK LINKS</li>
-    <li class="search_hidden menu-item">Visiting an Aplple Store FAQ</li>
-    <li class="search_hidden menu-item">AirPods</li>
-    <li class="search_hidden menu-item">AirTag</li>
-    <li class="search_hidden menu-item">AppleCare+</li>
-    <li class="search_hidden menu-item">Gift Cards</li>
-  </ul>
-  <ul class="mobile_menu">
-    <li class="menu-item">Store</li>
-    <li class="menu-item">Mac</li>
-    <li class="menu-item">iPad</li>
-    <li class="menu-item">iPhone</li>
-    <li class="menu-item">Watch</li>
-    <li class="menu-item">AirPods</li>
-    <li class="menu-item">TV & Home</li>
-    <li class="menu-item">Only on Apple</li>
-    <li class="menu-item">Accessories</li>
-    <li class="menu-item">Support</li>
-  </ul>
-</nav>
+    <ul class="search__menu">
+      <li class="menu-item">QUICK LINKS</li>
+      <li class="menu-item">Visiting an Aplple Store FAQ</li>
+      <li class="menu-item">AirPods</li>
+      <li class="menu-item">AirTag</li>
+      <li class="menu-item">AppleCare+</li>
+      <li class="menu-item">Gift Cards</li>
+    </ul>
+
+    <ul class="desktop__menu">
+      <li class="menu-item">Store</li>
+      <li class="menu-item">Mac</li>
+      <li class="menu-item">iPad</li>
+      <li class="menu-item">iPhone</li>
+      <li class="menu-item">Watch</li>
+      <li class="menu-item">AirPods</li>
+      <li class="menu-item">TV & Home</li>
+      <li class="menu-item">Only on Apple</li>
+      <li class="menu-item">Accessories</li>
+      <li class="menu-item">Support</li>
+    </ul>
+  </nav>
+</header>
 
 <style>
-  .header {
-    position: relative;
-    background-color: var(--color-secondary);
-    width: 100%;
-    max-height: 100px;
-    padding: 1rem 0;
-    transition: all 1s;
-    z-index: 10;
+  :root {
+    --color-deep-black: rgb(0, 0, 0);
+    --color-light-gray: #808083;
+    --color-links-blue: #2369be;
+    --color-white: #ffffff;
+    --color-deep-gray: #333333;
   }
-  .header.dark {
-    background-color: var(--color-text);
-  }
-  .header.hieght {
-    transition: all 1s;
-    overflow: hidden;
-    max-height: 0;
-    padding: 0;
-  }
-  .icons.shop.hidshop {
-    visibility: hidden;
-  }
-  .icons.shop {
-    transition: all 0.1s;
-  }
-  .container {
-    position: relative;
-    width: 100%;
-    height: 100%;
+  header .header__navbar {
     position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 2rem 0 2rem;
-  }
-  .nav-mobil {
-    position: relative;
+    padding: 0 2rem;
+    background-color: var(--color-deep-gray);
     width: 100%;
-    min-height: 100vh;
-    top: 0;
-    bottom: 0;
-    z-index: 1;
-    background-color: rgb(0, 0, 0);
-    transform: translateY(-150%);
-    transition: all 500ms ease-in;
+    height: 60px;
   }
-
-  .nav-mobil.sliddown {
-    transition: all 500ms ease-out;
-    overflow: hidden;
-    transform: translateY(0);
+  .menu__icons {
+    width: 25px;
+    height: 25px;
   }
-
-  .nav {
-    position: relative;
-    color: var(--color-primary);
-    font-weight: 100;
-    font-size: 1.5rem;
-    transition: 0.3s;
-  }
-  .menu-btn {
+  .menu__toggler {
     position: relative;
     display: flex;
     justify-content: center;
@@ -122,14 +82,14 @@ import search from "/search.svg";
     cursor: pointer;
     transition: all 200ms ease-in-out;
   }
-  .menu-btn__burger {
+  .menu__hamburger {
     transition: all 200ms ease-in-out;
     background: transparent;
     width: 18px;
     height: 1px;
   }
-  .menu-btn__burger::before,
-  .menu-btn__burger::after {
+  .menu__hamburger::before,
+  .menu__hamburger::after {
     content: "";
     position: absolute;
     width: 18px;
@@ -137,174 +97,146 @@ import search from "/search.svg";
     background: #fff;
     transition: all 200ms ease-in-out;
   }
-  .menu-btn__burger::before {
+  .menu__hamburger::before {
     transform: translateY(-5px);
   }
-  .menu-btn__burger::after {
+  .menu__hamburger::after {
     transform: translateY(5px);
   }
-  /* ANIMATION */
-  .menu-btn.open .menu-btn__burger {
+
+  /* .menu__hamburger click animation */
+  .menu__toggler.open .menu__hamburger {
     transform: translateX(-50px);
     background: transparent;
     box-shadow: none;
   }
-  .menu-btn.open .menu-btn__burger::before {
+
+  .menu__toggler.open .menu__hamburger::before {
     transform: rotate(45deg) translate(35px, -35px);
   }
-  .menu-btn.open .menu-btn__burger::after {
+
+  .menu__toggler.open .menu__hamburger::after {
     transform: rotate(-45deg) translate(35px, 35px);
   }
-  .icons {
-    width: 20px;
-  }
-  ul {
-    margin: 0 5rem;
-    list-style: none;
-  }
-  ul li:not(:last-child) {
-    border-bottom: rgba(157, 156, 156, 0.659) solid 1px;
-    padding: 1.5rem 0 1.5rem 0;
-  }
-  ul li:last-child {
-    padding: 1.5rem 0 1.5rem 0;
+
+  /* nav__dropdown */
+  .nav__dropdown {
+    position: absolute;
+    height: 0;
+    width: 100%;
+    /* add overflow hidden to hide all elements👇🏾  */
+    overflow: hidden;
+    background-color: var(--color-deep-black);
+    color: var(--color-white);
+    font-weight: 100;
+    font-size: 1.7rem;
+    z-index: 999;
+    transition: all 500ms ease-in;
   }
 
-  .search_container {
-    width: 100%;
-    height: 70px;
-    padding: 1rem;
-    border-bottom: rgba(157, 156, 156, 0.659) solid 1px;
-    background-color: rgb(0, 0, 0);
-  }
-  .search {
+  .desktop__menu {
+    max-height: 500px;
+    opacity: 1;
+    transition: all 1s ease-out;
     position: relative;
+  }
+  .search__menu {
+    transition: all 500ms ease-out;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+  }
+
+  .toggle__dropdown {
+    transition: all 500ms ease-out;
+    height: 100vh;
+  }
+
+  /* search_container */
+  .search_container {
+    flex: 0 0 70%;
     display: flex;
-    align-items: center;
     justify-content: center;
-    /* flex: 0 0 40%; */
+    align-items: center;
+    padding: 1rem 1rem;
     width: 100%;
-    margin-left: -10px;
-    z-index: 5;
+    background-color: green;
+    border-bottom: 1px solid var(--color-light-gray);
+    overflow: hidden;
+  }
+  .search__btn {
+    position: relative;
+    border: none;
+    background-color: transparent;
+    transform: translateX(40px);
+    z-index: 1;
+    /* overflow: hidden; */
   }
   .search__input {
-    position: relative;
+    background-image: url("/search.svg");
+    background-size: 20px;
+    background-position: 10px center;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+    padding: 10px 5px 10px 40px;
     font-family: inherit;
     font-size: inherit;
     font-weight: 100;
     color: inherit;
-    background-color: #d3d3d9;
+    background-color: #010108;
     border: none;
-    padding: 1.3rem 5rem;
-    border-radius: 10px;
-    min-width: 98%;
-    transition: all 500ms ease;
+    min-width: 88%;
+    transition: all 1s ease;
   }
-  .search__input[type="text"] {
-    background-color: #282828;
+  .search__input:focus {
+    transition: all 1s ease;
+    min-width: 90%;
   }
 
-  .search__input::placeholder {
-    font-weight: 100;
-    font-size: 2rem;
+  .invisible {
+    transition: all 500ms ease-in;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
   }
-  .search__btn {
+  .visible {
+    max-height: 500px;
+    opacity: 1;
+    transition: all 1s ease-in;
     position: relative;
-    z-index: 1;
-    border: none;
-    left: 30px;
-  }
-  .search__btn,
-  .search__img {
-    background-color: #282828;
   }
 
-  .search p {
-    color: var(--color-textlinks);
-    font-size: 2rem;
-    font-weight: 300;
-    padding-left: 1rem;
-    width: 70px;
-    overflow: hidden;
-    transition: all 500ms ease;
-    cursor: pointer;
-  }
-  .search p.displayer {
-    transition: all 500ms ease;
-    transform: translateX(0);
+  /* menu items  */
+  ul {
+    margin: 0 5rem;
+    list-style: none;
   }
 
-  /* hidden saerch */
-
-  .search_nav {
-    transition: all 500ms;
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transition: all 500ms ease-out;
-  }
-  .search_hidden li:first-of-type {
-    color: #9d9c9cde;
-    border-bottom: none;
-  }
-  .search_nav.search_transition {
-    max-height: 500px;
-    opacity: 1;
-    transition: all 500ms ease-in;
+  ul li:not(:last-child) {
+    border-bottom: rgba(157, 156, 156, 0.659) solid 1px;
+    padding: 1.5rem 0 1.5rem 0;
   }
 
-  /* mobile_menu */
-  .mobile_menu {
-    max-height: 500px;
-    overflow: hidden;
-    opacity: 1;
-    transition: all 500ms ease-in;
-  }
-  .mobile_menu.add {
-    opacity: 0;
-    max-height: 0;
-    transition: all 500ms ease-out;
-  }
-  .search__input.focus {
-    min-width: 75%;
-    transition: all 500ms ease;
+  ul li:last-child {
+    padding: 1.5rem 0 1.5rem 0;
   }
 </style>
 
 <script>
-  const menuBtn = document.querySelector(".menu-btn");
-  const searchNav = document.querySelector(".search_nav");
-  const searchInput = document.querySelector("#search");
-  const searchCancel = document.querySelector("p");
-  const menuMobileItems = document.querySelector(".mobile_menu");
-  const header = document.querySelector(".header");
-  const shop = document.querySelector(".shop");
-  const mobileNav = document.querySelector(".nav-mobil");
+  const menuToggler = document.querySelector(".menu__toggler");
+  const dropdownNavMenu = document.querySelector(".nav__dropdown");
+  const toggleMenuItemsCancle = document.querySelector(".search_cancel");
+  const searchMenueItems = document.querySelector(".search__menu");
+  const deskTopMenuItems = document.querySelector(".desktop__menu");
 
-  menuBtn.addEventListener("click", () => {
-    menuBtn.classList.toggle("open");
-    header.classList.toggle("dark");
-    shop.classList.toggle("hidshop");
-    mobileNav.classList.toggle("sliddown");
+  menuToggler.addEventListener("click", () => {
+    menuToggler.classList.toggle("open");
+    dropdownNavMenu.classList.toggle("toggle__dropdown");
   });
+  toggleMenuItemsCancle.addEventListener("click", toggleMenuItemsCancleHandler);
 
-  searchInput.addEventListener("click", () => {
-    let isOnFocus = false;
-    if (!isOnFocus) {
-      searchNav.classList.add("search_transition");
-      searchCancel.classList.add("displayer");
-      menuMobileItems.classList.add("add");
-      header.classList.add("hieght");
-      searchInput.classList.add("focus");
-      isOnFocus = false;
-    }
-  });
-
-  searchCancel.addEventListener("click", () => {
-    searchNav.classList.remove("search_transition");
-    searchCancel.classList.remove("displayer");
-    menuMobileItems.classList.remove("add");
-    header.classList.remove("hieght");
-    searchInput.classList.remove("focus");
-  });
+  function toggleMenuItemsCancleHandler() {
+    deskTopMenuItems.classList.toggle("invisible");
+    searchMenueItems.classList.toggle("visible");
+  }
 </script>
