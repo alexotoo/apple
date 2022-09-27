@@ -15,7 +15,7 @@ import search from "/search.svg";
 </header>
 
 <nav class="nav nav-mobil">
-  <div class="search_hidden nav">
+  <div class="search_hidden search_container">
     <form action="" class="search">
       <button class="search_hidden search__btn">
         <img class="icons search__img" src={search} alt="" />
@@ -28,15 +28,16 @@ import search from "/search.svg";
       />
       <p>Cancel</p>
     </form>
-    <ul>
-      <li class="search_hidden menu-item">QUICK LINKS</li>
-      <li class="search_hidden menu-item">Visiting an Aplple Store FAQ</li>
-      <li class="search_hidden menu-item">AirPods</li>
-      <li class="search_hidden menu-item">AirTag</li>
-      <li class="search_hidden menu-item">AppleCare+</li>
-      <li class="search_hidden menu-item">Gift Cards</li>
-    </ul>
   </div>
+
+  <ul class="search_nav search_hidden">
+    <li class="search_hidden menu-item">QUICK LINKS</li>
+    <li class="search_hidden menu-item">Visiting an Aplple Store FAQ</li>
+    <li class="search_hidden menu-item">AirPods</li>
+    <li class="search_hidden menu-item">AirTag</li>
+    <li class="search_hidden menu-item">AppleCare+</li>
+    <li class="search_hidden menu-item">Gift Cards</li>
+  </ul>
   <ul class="mobile_menu">
     <li class="menu-item">Store</li>
     <li class="menu-item">Mac</li>
@@ -56,12 +57,19 @@ import search from "/search.svg";
     position: relative;
     background-color: var(--color-secondary);
     width: 100%;
-    height: 50px;
-    transition: all 0.2s;
+    max-height: 100px;
+    padding: 1rem 0;
+    transition: all 1s;
     z-index: 10;
   }
   .header.dark {
     background-color: var(--color-text);
+  }
+  .header.hieght {
+    transition: all 1s;
+    overflow: hidden;
+    max-height: 0;
+    padding: 0;
   }
   .icons.shop.hidshop {
     visibility: hidden;
@@ -82,17 +90,18 @@ import search from "/search.svg";
   .nav-mobil {
     position: relative;
     width: 100%;
-    min-height: 95vh;
+    min-height: 100vh;
     top: 0;
     bottom: 0;
     z-index: 1;
     background-color: rgb(0, 0, 0);
     transform: translateY(-150%);
-    transition: all 0.6s ease-in-out;
+    transition: all 500ms ease-in;
   }
 
   .nav-mobil.sliddown {
-    overflow-y: hidden;
+    transition: all 500ms ease-out;
+    overflow: hidden;
     transform: translateY(0);
   }
 
@@ -101,14 +110,15 @@ import search from "/search.svg";
     color: var(--color-primary);
     font-weight: 100;
     font-size: 1.5rem;
+    transition: 0.3s;
   }
   .menu-btn {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50px;
-    height: 100%;
+    width: 30px;
+    height: 30px;
     cursor: pointer;
     transition: all 200ms ease-in-out;
   }
@@ -159,6 +169,14 @@ import search from "/search.svg";
   ul li:last-child {
     padding: 1.5rem 0 1.5rem 0;
   }
+
+  .search_container {
+    width: 100%;
+    height: 70px;
+    padding: 1rem;
+    border-bottom: rgba(157, 156, 156, 0.659) solid 1px;
+    background-color: rgb(0, 0, 0);
+  }
   .search {
     position: relative;
     display: flex;
@@ -166,24 +184,26 @@ import search from "/search.svg";
     justify-content: center;
     /* flex: 0 0 40%; */
     width: 100%;
-    border-bottom: rgba(157, 156, 156, 0.659) solid 1px;
-    padding-bottom: 2rem;
+    margin-left: -10px;
+    z-index: 5;
   }
   .search__input {
+    position: relative;
     font-family: inherit;
     font-size: inherit;
     font-weight: 100;
     color: inherit;
-    background-color: #1d1d1f;
+    background-color: #d3d3d9;
     border: none;
-    padding: 0.7rem 5rem;
+    padding: 1.3rem 5rem;
     border-radius: 10px;
-    width: 80%;
-    margin-left: 1.5rem;
-    margin-right: 1rem;
-    height: 40px;
-    transition: all 0.2s;
+    min-width: 98%;
+    transition: all 500ms ease;
   }
+  .search__input[type="text"] {
+    background-color: #282828;
+  }
+
   .search__input::placeholder {
     font-weight: 100;
     font-size: 2rem;
@@ -191,34 +211,100 @@ import search from "/search.svg";
   .search__btn {
     position: relative;
     z-index: 1;
-    background-color: transparent;
     border: none;
-    margin-right: -4.5rem;
+    left: 30px;
+  }
+  .search__btn,
+  .search__img {
+    background-color: #282828;
   }
 
   .search p {
     color: var(--color-textlinks);
     font-size: 2rem;
     font-weight: 300;
+    padding-left: 1rem;
+    width: 70px;
+    overflow: hidden;
+    transition: all 500ms ease;
+    cursor: pointer;
+  }
+  .search p.displayer {
+    transition: all 500ms ease;
+    transform: translateX(0);
   }
 
   /* hidden saerch */
+
+  .search_nav {
+    transition: all 500ms;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 500ms ease-out;
+  }
   .search_hidden li:first-of-type {
     color: #9d9c9cde;
+    border-bottom: none;
+  }
+  .search_nav.search_transition {
+    max-height: 500px;
+    opacity: 1;
+    transition: all 500ms ease-in;
   }
 
   /* mobile_menu */
+  .mobile_menu {
+    max-height: 500px;
+    overflow: hidden;
+    opacity: 1;
+    transition: all 500ms ease-in;
+  }
+  .mobile_menu.add {
+    opacity: 0;
+    max-height: 0;
+    transition: all 500ms ease-out;
+  }
+  .search__input.focus {
+    min-width: 75%;
+    transition: all 500ms ease;
+  }
 </style>
 
 <script>
   const menuBtn = document.querySelector(".menu-btn");
+  const searchNav = document.querySelector(".search_nav");
+  const searchInput = document.querySelector("#search");
+  const searchCancel = document.querySelector("p");
+  const menuMobileItems = document.querySelector(".mobile_menu");
   const header = document.querySelector(".header");
   const shop = document.querySelector(".shop");
   const mobileNav = document.querySelector(".nav-mobil");
+
   menuBtn.addEventListener("click", () => {
     menuBtn.classList.toggle("open");
     header.classList.toggle("dark");
     shop.classList.toggle("hidshop");
     mobileNav.classList.toggle("sliddown");
+  });
+
+  searchInput.addEventListener("click", () => {
+    let isOnFocus = false;
+    if (!isOnFocus) {
+      searchNav.classList.add("search_transition");
+      searchCancel.classList.add("displayer");
+      menuMobileItems.classList.add("add");
+      header.classList.add("hieght");
+      searchInput.classList.add("focus");
+      isOnFocus = false;
+    }
+  });
+
+  searchCancel.addEventListener("click", () => {
+    searchNav.classList.remove("search_transition");
+    searchCancel.classList.remove("displayer");
+    menuMobileItems.classList.remove("add");
+    header.classList.remove("hieght");
+    searchInput.classList.remove("focus");
   });
 </script>
