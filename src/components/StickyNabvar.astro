@@ -1,0 +1,54 @@
+<div class="sticky">
+  <h1>Apple Music</h1>
+  <a href="#" class="subscribe">Try 1 month free *</a>
+</div>
+
+<style>
+  .sticky {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    height: 55px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.73);
+    backdrop-filter: blur(5px);
+    border-bottom: 1px solid rgba(208, 208, 208, 0);
+    position: sticky;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    transition: all ease 1s;
+  }
+  .subscribe {
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    border: 1px solid #f9243c;
+    background: #f9243c;
+    border-radius: 50px;
+    height: 25px;
+    width: 120px;
+    padding: 6px 10px;
+  }
+  .borderbottom {
+    border-bottom: 1px solid rgb(208, 208, 208);
+  }
+</style>
+<script>
+  const stickyNavBar = document.querySelector(".sticky");
+  window.onscroll = function () {
+    addBorderBottom();
+  };
+
+  function addBorderBottom() {
+    if (
+      document.body.scrollTop > 60 ||
+      document.documentElement.scrollTop > 60
+    ) {
+      stickyNavBar.classList.add("borderbottom");
+    } else {
+      stickyNavBar.classList.remove("borderbottom");
+    }
+  }
+</script>
