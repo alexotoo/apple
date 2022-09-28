@@ -155,6 +155,7 @@ import shop from "/cart.svg";
   .toggle__dropdown {
     transition: all 500ms ease-out;
     height: 100vh;
+    /* width: 100%; */
   }
 
   /* search_container */
@@ -225,8 +226,10 @@ import shop from "/cart.svg";
   }
   .Icon_opcity {
     opacity: 0;
-    transform: translateX(10rem);
+    /* transform: translateX(7rem); */
     transition: opacity 200ms ease-out;
+    cursor: default;
+    overflow: hidden;
   }
   .invisible {
     transition: all 500ms ease-in;
@@ -254,6 +257,10 @@ import shop from "/cart.svg";
 
   ul li:last-child {
     padding: 1.5rem 0 1.5rem 0;
+  }
+  .search__menu .menu-item:first-of-type {
+    border-bottom: none;
+    color: #808083;
   }
 </style>
 
@@ -286,9 +293,7 @@ import shop from "/cart.svg";
       dropdownNavMenu.classList.toggle("moveup");
       toggleMenuItemsCancle.classList.toggle("addcancel");
 
-      console.log(isVisible);
       isVisible = true;
-      console.log(isVisible);
     }
   });
 
