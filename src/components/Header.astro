@@ -14,9 +14,6 @@ import shop from "/cart.svg";
 
   <nav class="nav nav__dropdown">
     <form action="" class="search_container">
-      <!-- <button class="search_hidden search__btn">
-        <img class="menu__icons search__img" src={search} alt="" />
-      </button> -->
       <input
         class="search_hidden search__input"
         type="search"
@@ -54,7 +51,7 @@ import shop from "/cart.svg";
   :root {
     --color-deep-black: rgb(0, 0, 0);
     --color-light-gray: #808083;
-    --color-links-blue: #2369be;
+    --color-links-blue: #1780ff;
     --color-white: #ffffff;
     --color-deep-gray: #333333;
   }
@@ -66,7 +63,8 @@ import shop from "/cart.svg";
     padding: 0 2rem;
     background-color: var(--color-deep-gray);
     width: 100%;
-    height: 60px;
+    height: 50px;
+    transition: all 1s ease;
   }
   .menu__icons {
     width: 25px;
@@ -103,6 +101,9 @@ import shop from "/cart.svg";
   .menu__hamburger::after {
     transform: translateY(5px);
   }
+  .addbgblack {
+    background-color: rgb(0, 0, 0) !important;
+  }
 
   /* .menu__hamburger click animation */
   .menu__toggler.open .menu__hamburger {
@@ -132,6 +133,10 @@ import shop from "/cart.svg";
     font-size: 1.7rem;
     z-index: 999;
     transition: all 500ms ease-in;
+    transform: translateY();
+  }
+  .moveup {
+    transform: translateY(-50px);
   }
 
   .desktop__menu {
@@ -160,7 +165,7 @@ import shop from "/cart.svg";
     align-items: center;
     padding: 1rem 1rem;
     width: 100%;
-    background-color: green;
+    /* background-color: green; */
     border-bottom: 1px solid var(--color-light-gray);
     overflow: hidden;
   }
@@ -183,16 +188,46 @@ import shop from "/cart.svg";
     font-size: inherit;
     font-weight: 100;
     color: inherit;
-    background-color: #010108;
+    background-color: #282828;
     border: none;
-    min-width: 88%;
+    min-width: 98%;
     transition: all 1s ease;
   }
-  .search__input:focus {
+  .search__input::placeholder {
+    font-weight: normal;
+  }
+  .inputfocus {
     transition: all 1s ease;
-    min-width: 90%;
+    min-width: 82%;
+    transform: translateX(-1rem);
+  }
+  .search_cancel {
+    text-decoration: none;
+    color: var(--color-links-blue);
+    margin-left: 1rem;
+    font-weight: normal;
+    display: none;
+    /* opacity: 0;
+    transform: translateX(10rem);
+    transition: opacity 1s ease; */
+  }
+  .addcancel {
+    display: block;
   }
 
+  /* shop icon opacity  */
+
+  .shop,
+  .apple {
+    opacity: 1;
+    transition: opacity 1s ease-in;
+    cursor: pointer;
+  }
+  .Icon_opcity {
+    opacity: 0;
+    transform: translateX(10rem);
+    transition: opacity 200ms ease-out;
+  }
   .invisible {
     transition: all 500ms ease-in;
     max-height: 0;
@@ -228,12 +263,28 @@ import shop from "/cart.svg";
   const toggleMenuItemsCancle = document.querySelector(".search_cancel");
   const searchMenueItems = document.querySelector(".search__menu");
   const deskTopMenuItems = document.querySelector(".desktop__menu");
+  const searchInput = document.querySelector(".search__input");
+  const shopIcon = document.querySelector(".shop");
+  const navBar = document.querySelector(".header__navbar");
+
+  let isVisible = true;
 
   menuToggler.addEventListener("click", () => {
     menuToggler.classList.toggle("open");
     dropdownNavMenu.classList.toggle("toggle__dropdown");
+    shopIcon.classList.toggle("Icon_opcity");
+    navBar.classList.toggle("addbgblack");
   });
+
   toggleMenuItemsCancle.addEventListener("click", toggleMenuItemsCancleHandler);
+
+  searchInput.addEventListener("click", () => {
+    searchMenueItems.classList.toggle("visible");
+    deskTopMenuItems.classList.toggle("invisible");
+    searchInput.classList.toggle("inputfocus");
+    dropdownNavMenu.classList.toggle("moveup");
+    toggleMenuItemsCancle.classList.toggle("addcancel");
+  });
 
   function toggleMenuItemsCancleHandler() {
     deskTopMenuItems.classList.toggle("invisible");
