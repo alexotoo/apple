@@ -191,13 +191,13 @@ import shop from "/cart.svg";
     background-color: #282828;
     border: none;
     min-width: 98%;
-    transition: all 1s ease;
+    transition: all 500ms ease;
   }
   .search__input::placeholder {
     font-weight: normal;
   }
   .inputfocus {
-    transition: all 1s ease;
+    transition: all 500ms ease;
     min-width: 82%;
     transform: translateX(-1rem);
   }
@@ -267,7 +267,7 @@ import shop from "/cart.svg";
   const shopIcon = document.querySelector(".shop");
   const navBar = document.querySelector(".header__navbar");
 
-  let isVisible = true;
+  let isVisible = false;
 
   menuToggler.addEventListener("click", () => {
     menuToggler.classList.toggle("open");
@@ -279,15 +279,29 @@ import shop from "/cart.svg";
   toggleMenuItemsCancle.addEventListener("click", toggleMenuItemsCancleHandler);
 
   searchInput.addEventListener("click", () => {
-    searchMenueItems.classList.toggle("visible");
-    deskTopMenuItems.classList.toggle("invisible");
-    searchInput.classList.toggle("inputfocus");
-    dropdownNavMenu.classList.toggle("moveup");
-    toggleMenuItemsCancle.classList.toggle("addcancel");
+    if (!isVisible) {
+      searchMenueItems.classList.toggle("visible");
+      deskTopMenuItems.classList.toggle("invisible");
+      searchInput.classList.toggle("inputfocus");
+      dropdownNavMenu.classList.toggle("moveup");
+      toggleMenuItemsCancle.classList.toggle("addcancel");
+
+      console.log(isVisible);
+      isVisible = true;
+      console.log(isVisible);
+    }
   });
 
   function toggleMenuItemsCancleHandler() {
-    deskTopMenuItems.classList.toggle("invisible");
-    searchMenueItems.classList.toggle("visible");
+    if (isVisible) {
+      searchMenueItems.classList.remove("visible");
+      deskTopMenuItems.classList.remove("invisible");
+      searchInput.classList.remove("inputfocus");
+      dropdownNavMenu.classList.remove("moveup");
+      toggleMenuItemsCancle.classList.remove("addcancel");
+      deskTopMenuItems.classList.remove("invisible");
+      searchMenueItems.classList.remove("visible");
+      isVisible = false;
+    }
   }
 </script>
