@@ -6,18 +6,20 @@ import Layout from "../layouts/Layout.astro";
   <main class="hero">
     <div class="logo">
       <img src="/bg.png" alt="" />
+      <h2>Apple Music</h2>
     </div>
   </main>
 </Layout>
 
 <style>
   .logo {
-    display: block;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
   }
-  main {
+  h2 {
+    margin-top: -50px;
   }
   .hero {
     width: 100%;
