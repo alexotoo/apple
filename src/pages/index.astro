@@ -4,11 +4,23 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout title="index">
   <main class="hero">
-    <h1>helloooooo</h1>
+    <div class="logo">
+      <img src="/bg.png" alt="" />
+    </div>
   </main>
 </Layout>
 
 <style>
+  .logo {
+    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  main {
+    background-image: url("/alexander-shatov-qt7S2QuAhJI-unsplash.jpeg");
+    background-repeat: no-repeat;
+  }
   .hero {
     min-height: 200vh;
   }
